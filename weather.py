@@ -7,7 +7,7 @@ load_dotenv()
 
 
 def get_current_weather(city="Kansas City"):
-    requests_url = f'http://api.openweathermap.org/data/2.5/weather?appid={os.getenv("API_KEY")}&q={city}&units=metric'
+    requests_url = f'http://api.openweathermap.org/data/2.5/weather?appid={os.getenv("API_KEY")}&q={city}&units=metric&lang=sp'
 
     weather_data = requests.get(requests_url).json()
 
@@ -18,6 +18,9 @@ if __name__ == "__main__":
     print("\n*** Get Current Weather Conditions ***\n")
 
     city = input("\nPlease enter a city name: ")
+
+    if not bool(city.strip()):
+        city = "Kansas City"
 
     weather_data = get_current_weather(city)
 
